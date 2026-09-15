@@ -147,25 +147,35 @@ export function ChatInterface({ saju, topic, counselor }: ChatInterfaceProps) {
       </div>
 
       <div className="flex-1 space-y-4 overflow-y-auto pb-4">
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-          >
+        {messages.map((message, index) => {
+          const isLastMessage = index === messages.length - 1;
+          const isStreamingAssistant =
+            isLoading &&
+            isLastMessage &&
+            message.role === "assistant" &&
+            message.id !== "welcome";
+
+          return (
             <div
-              className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                message.role === "user"
-                  ? "chat-bubble-user text-ivory"
-                  : "chat-bubble-ai text-ivory/90"
-              }`}
+              key={message.id}
+              className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
             >
-              <ChatMessage
-                content={message.content}
-                role={message.role === "user" ? "user" : "assistant"}
-              />
+              <div
+                className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+                  message.role === "user"
+                    ? "chat-bubble-user text-ivory"
+                    : "chat-bubble-ai text-ivory/90"
+                }`}
+              >
+                <ChatMessage
+                  content={message.content}
+                  role={message.role === "user" ? "user" : "assistant"}
+                  isStreaming={isStreamingAssistant}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         {isLoading && (
           <p className="text-sm text-ivory/40">답변을 작성하고 있습니다...</p>
         )}
