@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0f1729;
+  --color-navy-light: #1a2744;
+  --color-ivory: #f5f1e8;
+  --color-beige: #e8e0d4;
+  --color-gold: #c9a15c;
+  --color-gold-dark: #a8864a;
+  --color-muted-blue: #5b7a9d;
+  --color-burgundy: #7a3b4a;
+  --font-serif: var(--font-nanum-batang);
+  --font-sans: var(--font-pretendard);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-navy);
+  color: var(--color-ivory);
+  font-family: var(--font-pretendard), "Pretendard", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-serif), "Nanum Myeongjo", "나눔명조", serif;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease-out forwards;
+}
+
+.glow-gold {
+  box-shadow: 0 0 40px rgba(201, 161, 92, 0.15);
+}
+
+.card-surface {
+  background: linear-gradient(
+    145deg,
+    rgba(26, 39, 68, 0.95),
+    rgba(15, 23, 41, 0.98)
+  );
+  border: 1px solid rgba(201, 161, 92, 0.15);
+}
+
+.chat-bubble-ai {
+  background: rgba(26, 39, 68, 0.9);
+  border: 1px solid rgba(91, 122, 157, 0.25);
+}
+
+.chat-bubble-user {
+  background: rgba(201, 161, 92, 0.15);
+  border: 1px solid rgba(201, 161, 92, 0.3);
+}
